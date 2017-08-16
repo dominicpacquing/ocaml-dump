@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  opam:
+    image: "ocaml/opam:ubuntu"
+    volumes:
+      - ./src:/home/opam/src
