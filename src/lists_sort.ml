@@ -63,6 +63,7 @@ let rec merge x y =
     else
       rh :: merge (lh :: lt) rt ;;
 
+(* Exercise: merge sort *)
 let rec msort l =
   match l with
     [] -> []
