@@ -71,4 +71,45 @@ let calm_fn x = if x = '!' then '.' else x ;;
 (* forces an integer to be in 1..10 range *)
 let clip i =
   if i < 1 then 1
-  else if i > 10 then 10 ;;
+  else if i > 10 then 10
+  else i;;
+
+let clip_list l =
+    map clip l ;;
+
+let clip_list_an l =
+  map
+    (fun x ->
+      if x < 1 then 1 else
+        if x > 10 then 10
+          else x)
+  l ;;
+
+let rec apply fn num_apply seed =
+    if num_apply = 0 then
+      seed
+    else
+      fn (apply fn (num_apply - 1) seed) ;;
+
+let filter fn l =
+  match l with
+    [] -> []
+  | h :: t ->
+    if (fn h) then
+      h :: filter fn t
+    else
+      filter fn t ;;
+
+let rec for_all fn l =
+  match l with
+   [] -> true
+  | h :: t ->
+    if (fn h) then
+      for_all fn t
+    else
+      false ;;
+
+let rec mapl fn ll =
+  match ll with
+    [] -> []
+  | h :: t -> map fn h :: mapl fn t ;;
