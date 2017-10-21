@@ -37,3 +37,14 @@ let rec smallest_inner l found smallest =
       smallest_inner t found smallest ;;
 
 let smallest l = smallest_inner l false max_int ;;
+
+let smallest_or_zero l =
+  try
+      smallest l
+    with Not_found -> 0 ;;
+
+let smaller_or_square_root n: float =
+  let sqrt_val = sqrt x in
+
+let rec square_root_inner x n =
+  if x * x > n then x - 1 else square_inner (x + 1) n ;;
