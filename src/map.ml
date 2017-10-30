@@ -35,3 +35,29 @@ let rec replace k v l =
       (k, v) :: t
     else
       (k', v') :: replace k v t ;;
+
+let rec innerLength l total =
+  match l with
+    [] -> total
+  | h :: t -> innerLength t (total + 1) ;;
+
+let rec length l = innerLength l 0 ;;
+
+let rec innerTranspose l m =
+  match l, m with
+    h :: t, h' :: t' ->
+      (h, h') :: innerTranspose t t'
+  | _ -> [] ;;
+
+let transpose l m =
+  if (length l) = (length m) then
+    innerTranspose l m
+  else
+    raise (Invalid_argument "arrays don't have the same size") ;;
+
+let rec inverseTranspose listDic (kl, vl) =
+  match listDic with
+    [] -> (kl, vl)
+  | (k, v) :: t ->
+      inverseTranspose t (k :: kl, v :: vl) ;;
+  
